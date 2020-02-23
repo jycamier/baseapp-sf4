@@ -12,7 +12,12 @@ RUN pecl install redis && \
     apt install -y git zlib1g-dev libzip-dev && \
     docker-php-ext-install zip
 
+FROM php_base AS build
+
 COPY . .
 
 RUN composer install
 
+FROM php_base AS prod
+
+COPY --from=build --chown=www-data:www-data /var/www/html /var/www/html

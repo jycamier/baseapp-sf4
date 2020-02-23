@@ -1,6 +1,7 @@
 version: "3.7"
 
 x-fpm: &base-fpm
+  image: formation/back
   build:
     context: .
     args:
