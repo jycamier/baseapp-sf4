@@ -17,7 +17,7 @@ class Push
 
     public function __invoke()
     {
-        $this->messageBus->dispatch(new Alert('Hello world'));
+        $this->messageBus->dispatch(new Alert('New consumption'));
 
         return new JsonResponse([
             'ok'

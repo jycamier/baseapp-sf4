@@ -1,3 +1,7 @@
-index:
-    path: /
+push:
+    path: /push
     controller: App\Controller\Push
+
+consumptions:
+    path: /
+    controller: App\Controller\Consumptions
