@@ -1,7 +1,11 @@
+envs:
+    path: /
+    controller: App\Controller\ShowEnvs
+
 push:
     path: /push
     controller: App\Controller\Push
 
 consumptions:
-    path: /
+    path: /consumptions
     controller: App\Controller\Consumptions
