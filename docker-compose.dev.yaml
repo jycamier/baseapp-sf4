@@ -1,0 +1,12 @@
+version: "3.7"
+
+x-app-volume: &app-volume
+  volumes:
+    - ./:/var/www/html
+
+services:
+  fpm:
+    <<: *app-volume
+
+  consumer:
+    <<: *app-volume
