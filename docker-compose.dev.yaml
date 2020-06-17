@@ -1,12 +1,23 @@
 version: "3.7"
 
-x-app-volume: &app-volume
+x-php-base-dev: &php-base-dev
+  build:
+    target: php_dev
   volumes:
     - ./:/var/www/html
+    - $HOME/.composer:/var/www/.composer
 
 services:
+  php:
+    <<: *php-base-dev
+    environment:
+      COMPOSER_HOME: /var/www/.composer
+    command:
+      - 'composer'
+      - 'install'
+
   fpm:
-    <<: *app-volume
+    <<: *php-base-dev
 
   consumer:
-    <<: *app-volume
+    <<: *php-base-dev

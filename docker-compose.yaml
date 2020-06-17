@@ -4,6 +4,7 @@ x-fpm: &base-fpm
   image: formation/back
   build:
     context: .
+    target: prod
     args:
       COMPOSER_VERSION: 1.9
       PHP_VERSION: 7.4
@@ -15,12 +16,18 @@ x-fpm: &base-fpm
     - app:/var/www/html
 
 services:
+  php:
+    <<: *base-fpm
+    user: www-data
+    command: "true"
+
   fpm:
     <<: *base-fpm
 
   consumer:
     <<: *base-fpm
     command: bin/console messenger:consume
+    restart: on-failure
 
   nginx:
     image: nginx:1.16-alpine

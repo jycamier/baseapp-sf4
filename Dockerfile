@@ -21,3 +21,11 @@ RUN composer install
 FROM php_base AS prod
 
 COPY --from=build --chown=www-data:www-data /var/www/html /var/www/html
+
+FROM php_base AS php_dev
+
+ARG UID=1000
+ARG GID=1000
+
+RUN usermod --uid ${UID} www-data && \
+    groupmod --gid ${GID} www-data
