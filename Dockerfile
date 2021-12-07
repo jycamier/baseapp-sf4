@@ -8,8 +8,8 @@ COPY --from=composer_base /usr/bin/composer /usr/bin/composer
 
 RUN pecl install redis && \
     docker-php-ext-enable redis && \
-    apt update && \
-    apt install -y git zlib1g-dev libzip-dev && \
+    apt-get update && \
+    apt-get install -y git zlib1g-dev libzip-dev && \
     docker-php-ext-install zip
 
 FROM php_base AS build
